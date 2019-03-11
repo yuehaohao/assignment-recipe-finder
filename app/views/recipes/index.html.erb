@@ -1,0 +1,21 @@
+<table>
+
+	<!-- for each recipe do the actions fowollowing  -->
+  <% @recipes.to_a.each do |recipe| %>
+
+  	<!-- each row of recipe should be consist of three columns: image, title, and social rank -->
+    <tr>
+
+    	<!-- the first column is the image for the recipe and the height and with are 100px -->
+      <td> <%= link_to image_tag(recipe["image_url"], height: '100', width: '100'), recipe["source_url"] %> </td>
+
+      <!-- the second column is the title of the recipe and in order to parse the title, we close the XSS protection so that the title should be displayed correctly -->
+      <td> <%= link_to sanitize(recipe["title"]), recipe["source_url"] %> </td>
+
+      <!-- the third column is the social rank of the recipe -->
+      <td> <%= recipe["social_rank"] %> </td>
+    </tr>
+
+  <!-- end of the recipe loop -->
+  <% end %>
+</table>
